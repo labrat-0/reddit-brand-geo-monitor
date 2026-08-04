@@ -32,14 +32,16 @@ MAX_RUN_COST_USD = 0.12  # ceiling for one scan; ~2x normal floor
 def _build_scraper_input(cfg: BrandMonitorInput, keywords: list[str], raw_cap: int) -> ScraperInput:
     """Search mode over brand terms + competitor names."""
     queries = keywords + list(cfg.competitors)
-    # Relevance sort surfaces on-topic threads about the brand rather than the
-    # newest tangential keyword mention. Recency is conveyed per-mention via
-    # ageHours and enforced by the timeFilter window in main.py.
+    # A monitor wants the most RECENT brand mentions, so we sort by new. Reddit's
+    # relevance sort ignores the time filter and returns years-old top posts,
+    # which the recency window in main.py would then throw away. New sort honors
+    # timeFilter and surfaces fresh mentions, exactly what a scheduled monitor and
+    # its delta state need.
     return ScraperInput(
         mode=ScrapingMode.SEARCH,
         search_queries_list=queries,
         search_subreddit=cfg.subreddits[0] if len(cfg.subreddits) == 1 else "",
-        search_sort="relevance",
+        search_sort="new",
         time_filter=cfg.timeFilter,
         max_results=raw_cap,
         include_comments=False,
