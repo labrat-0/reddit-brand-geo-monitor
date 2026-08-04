@@ -1,0 +1,103 @@
+{
+    "title": "Reddit Brand / GEO Monitor",
+    "type": "object",
+    "schemaVersion": 1,
+    "properties": {
+        "keywords": {
+            "title": "Brand terms to track",
+            "type": "array",
+            "description": "Your brand name and its variations (handles, domains, product names). Optional if you supply a keywords dataset or file below.",
+            "editor": "stringList",
+            "prefill": ["Notion", "notion.so"]
+        },
+        "competitors": {
+            "title": "Competitor names (optional)",
+            "type": "array",
+            "editor": "stringList",
+            "description": "Also track these. Mentions comparing you to a competitor are flagged with the competitor name.",
+            "prefill": ["Obsidian", "Coda"]
+        },
+        "brandContext": {
+            "title": "Brand context (optional, 1 sentence)",
+            "type": "string",
+            "editor": "textarea",
+            "description": "Only needed for common-word brand names, to filter off-topic matches. Example: 'Notion, the productivity and note-taking app (not the dictionary word).' Leave empty for distinctive names.",
+            "prefill": "Notion, the productivity and note-taking app (not the dictionary word)."
+        },
+        "subreddits": {
+            "title": "Restrict to subreddits (optional)",
+            "type": "array",
+            "editor": "stringList",
+            "description": "Leave empty to monitor all of Reddit."
+        },
+        "sinceLastRun": {
+            "title": "Monitor mode: only new mentions since last run",
+            "type": "boolean",
+            "default": true,
+            "description": "On a schedule, emit only mentions not seen on a previous run, so downstream alerts fire only on genuinely new activity. Turn off for a one-shot full pull."
+        },
+        "timeFilter": {
+            "title": "Look-back window",
+            "type": "string",
+            "editor": "select",
+            "description": "How far back to scan each run.",
+            "enum": ["day", "week", "month", "year", "all"],
+            "default": "week"
+        },
+        "minBuzz": {
+            "title": "Minimum buzz score (0-100)",
+            "type": "integer",
+            "default": 0,
+            "minimum": 0,
+            "maximum": 100,
+            "description": "Skip low-engagement mentions. 0 returns everything; raise it to focus on threads gaining traction."
+        },
+        "maxMentions": {
+            "title": "Max new mentions per run",
+            "type": "integer",
+            "description": "Stop after this many new mentions are delivered (1-500).",
+            "default": 100,
+            "minimum": 1,
+            "maximum": 500
+        },
+        "scoringMode": {
+            "title": "Sentiment engine",
+            "type": "string",
+            "editor": "select",
+            "enum": ["lexicon", "llm"],
+            "enumTitles": ["Lexicon (deterministic, no key, free)", "LLM (sharper sentiment, bring your own key)"],
+            "default": "lexicon",
+            "description": "lexicon is deterministic and needs no API key. llm re-checks sentiment with your own LLM key on the mentions kept."
+        },
+        "openaiApiKey": {
+            "title": "LLM API key (only if sentiment engine = llm)",
+            "type": "string",
+            "editor": "textfield",
+            "isSecret": true,
+            "description": "Your own key. Used only for sentiment on kept mentions. Never stored."
+        },
+        "keywordsDatasetId": {
+            "title": "Bulk brand terms: Apify dataset ID (optional)",
+            "type": "string",
+            "editor": "textfield",
+            "description": "Dataset whose items are strings or objects with a 'keyword' field. Merged with the terms above."
+        },
+        "keywordsFileUrl": {
+            "title": "Bulk brand terms: CSV or TXT URL (optional)",
+            "type": "string",
+            "editor": "textfield",
+            "description": "Public link to a .csv (column 'keyword') or newline-delimited .txt. Merged with the terms above."
+        },
+        "proxyConfiguration": {
+            "title": "Proxy",
+            "type": "object",
+            "editor": "proxy",
+            "description": "Passed through to the underlying Reddit scraper. Residential recommended.",
+            "default": {
+                "useApifyProxy": true,
+                "apifyProxyGroups": ["RESIDENTIAL"]
+            }
+        }
+    },
+    "required": []
+}

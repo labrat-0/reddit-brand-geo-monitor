@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+*.pyc
+storage/
+.env
+apify_storage/
+crawlee_storage/

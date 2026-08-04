@@ -1,0 +1,38 @@
+{
+    "actorSpecification": 1,
+    "fields": {},
+    "views": {
+        "overview": {
+            "title": "Mentions",
+            "transformation": {
+                "fields": [
+                    "sentiment",
+                    "mentionType",
+                    "buzzScore",
+                    "geoTier",
+                    "suggestedPriority",
+                    "title",
+                    "subreddit",
+                    "url",
+                    "ageHours",
+                    "matchedTerms"
+                ]
+            },
+            "display": {
+                "component": "table",
+                "properties": {
+                    "sentiment": { "label": "Sentiment" },
+                    "mentionType": { "label": "Type" },
+                    "buzzScore": { "label": "Buzz", "format": "number" },
+                    "geoTier": { "label": "GEO" },
+                    "suggestedPriority": { "label": "Priority" },
+                    "title": { "label": "Title" },
+                    "subreddit": { "label": "Subreddit" },
+                    "url": { "label": "URL", "format": "link" },
+                    "ageHours": { "label": "Age (h)", "format": "number" },
+                    "matchedTerms": { "label": "Matched" }
+                }
+            }
+        }
+    }
+}

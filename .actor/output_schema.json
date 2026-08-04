@@ -1,0 +1,13 @@
+{
+    "actorOutputSchemaVersion": 1,
+    "title": "Reddit Brand / GEO Monitor Results",
+    "description": "Dataset of scored brand mentions from Reddit.",
+    "properties": {
+        "mentions": {
+            "type": "string",
+            "title": "Mentions",
+            "description": "Dataset containing all delivered brand mentions",
+            "template": "{{links.apiDefaultDatasetUrl}}/items"
+        }
+    }
+}

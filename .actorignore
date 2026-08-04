@@ -1,0 +1,10 @@
+# Files excluded from the Apify actor build (they stay in the public GitHub repo).
+# Tests and local dev artifacts are not needed inside the deployed image.
+test_local.py
+test_embeddings.py
+test_llm.py
+.venv/
+__pycache__/
+*.pyc
+.git/
+.gitignore

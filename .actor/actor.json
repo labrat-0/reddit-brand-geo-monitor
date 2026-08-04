@@ -1,0 +1,17 @@
+{
+    "actorSpecification": 1,
+    "name": "reddit-brand-geo-monitor",
+    "title": "Reddit Brand & GEO Monitor: Track Mentions and AI-Search Visibility",
+    "version": "0.1",
+    "buildTag": "latest",
+    "input": "./input_schema.json",
+    "output": "./output_schema.json",
+    "storages": {
+        "dataset": "./dataset_schema.json"
+    },
+    "dockerfile": "./Dockerfile",
+    "defaultRunOptions": {
+        "memoryMbytes": 2048,
+        "timeoutSecs": 1800
+    }
+}
