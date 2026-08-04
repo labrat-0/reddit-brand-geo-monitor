@@ -1,7 +1,7 @@
 {
     "actorSpecification": 1,
     "name": "reddit-brand-geo-monitor",
-    "title": "Reddit Brand & GEO Monitor: Track Mentions and AI-Search Visibility",
+    "title": "Reddit Brand & GEO Monitor: Mentions & Sentiment",
     "version": "0.1",
     "buildTag": "latest",
     "input": "./input_schema.json",
